@@ -65,7 +65,7 @@ namespace GestoreEventi
         /*
         public DateTime ModificaData()
         {
-            DateTime NuovaData=;
+            DateTime NuovaData; 
             int flag=0;
             while (flag==0)
             {
@@ -104,9 +104,9 @@ namespace GestoreEventi
             return nPostiPrenotati;
         }
 
-        public int GetPostiDisponibili(int numeroPostimax,int numeroPostiPrenotati)
+        public int GetPostiDisponibili(int numeroPostiPrenotati)
         {
-            int postiDisponibili = numeroPostimax - numeroPostiPrenotati;
+            int postiDisponibili = this.CapienzaMaxEvento - numeroPostiPrenotati;
             return postiDisponibili;
         }
 

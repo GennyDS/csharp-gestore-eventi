@@ -22,7 +22,7 @@ mioEvento.PrenotaPosti( nPostiPrenotatiUtente);
 
 
 Console.WriteLine("Numero di posti prenotati: "+nPostiPrenotatiUtente);
-Console.WriteLine("Numero di posti Disponibili: "+mioEvento.GetPostiDisponibili(nPostiMaxUtente,nPostiPrenotatiUtente));
+Console.WriteLine("Numero di posti Disponibili: "+mioEvento.GetPostiDisponibili(nPostiPrenotatiUtente));
 
 
 //-------PRENOTAZIONE-----------------
@@ -44,7 +44,7 @@ while (flagPrenotazione == false)
 
 
         Console.WriteLine("Numero di posti prenotati: " + mioEvento.GetNPostiPrenotati());
-        Console.WriteLine("Numero di posti Disponibili: " + mioEvento.GetPostiDisponibili(nPostiMaxUtente, nNuoviPostiPrenotati));             
+        Console.WriteLine("Numero di posti Disponibili: " + mioEvento.GetPostiDisponibili(nNuoviPostiPrenotati));             
     }
     else if (RispostaUtentePrenotazione == "no")
     {
@@ -75,15 +75,13 @@ Console.WriteLine("Vuoi DISDIRE i posti ? (Si/No)");
 
     if (RispostaUtenteDisdire == "si")
     {
-        int nPostiDisdetti= mioEvento.DisdiciPosti(nPostiPrenotatiUtente);
-
-        nPostiDisdetti -= nPostiPrenotatiUtente;
+        Console.WriteLine("quanti posti vuoi disdire?");
+        int numeroPostiDaDisdire = int.Parse(Console.ReadLine());
       
-        int nNuoviPostiDispdetti = nPostiDisdetti-nPostiPrenotatiUtente ;
-        int nNuoviPostiDisponibili = nPostiMaxUtente - nNuoviPostiDispdetti;
+       
 
-        Console.WriteLine("Numero di posti prenotati: " + nNuoviPostiDispdetti);
-        Console.WriteLine("Numero di posti Disponibili: " + nNuoviPostiDisponibili);
+       // Console.WriteLine("Numero di posti prenotati: " + nNuoviPostiDispdetti);
+       // Console.WriteLine("Numero di posti Disponibili: " + nNuoviPostiDisponibili);
 
     }
         else if (RispostaUtenteDisdire =="no")
@@ -96,7 +94,7 @@ Console.WriteLine("Vuoi DISDIRE i posti ? (Si/No)");
 
 
 
-
+mioEvento.ToString();
 
 
 
