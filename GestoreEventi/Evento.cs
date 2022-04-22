@@ -141,28 +141,24 @@ namespace GestoreEventi
 
 
 
-        public int DisdiciPosti( int nPostiPrenotati)
+        public int DisdiciPosti( int nPostiCheDevoDisdire)
         {
-            int nPostiRimossi=0;
             bool flag = false;
 
             while (flag == false)
             {
 
-                 Console.WriteLine("Inserisci il numero di posti che vuoi disdire");
-                 nPostiRimossi= int.Parse(Console.ReadLine());
-                nPostiRimossi -= nPostiPrenotati;
-
-                if(nPostiRimossi>nPostiPrenotati)
+                if(nPostiCheDevoDisdire<this.CapienzaMaxEvento)
                 {
-                    throw new Exception("il numero dei posti rimossi è maggiore dei posti prenotati");
+                    this.nPostiPrenotati-=nPostiCheDevoDisdire;
                 }
                 else
                 {
+                    throw new Exception("");
                     flag = true;
                 }
             }
-            return nPostiRimossi;
+            return this.nPostiPrenotati;
         }
 
         public virtual string ToString()

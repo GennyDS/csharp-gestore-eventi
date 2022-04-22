@@ -77,11 +77,11 @@ Console.WriteLine("Vuoi DISDIRE i posti ? (Si/No)");
     {
         Console.WriteLine("quanti posti vuoi disdire?");
         int numeroPostiDaDisdire = int.Parse(Console.ReadLine());
-      
+        int nPostiDisdetti = mioEvento.DisdiciPosti(numeroPostiDaDisdire);
        
 
-       // Console.WriteLine("Numero di posti prenotati: " + nNuoviPostiDispdetti);
-       // Console.WriteLine("Numero di posti Disponibili: " + nNuoviPostiDisponibili);
+       Console.WriteLine("Numero di posti prenotati: " + mioEvento.GetNPostiPrenotati());
+        Console.WriteLine("Numero di posti Disponibili: " + mioEvento.GetPostiDisponibili(nPostiDisdetti));
 
     }
         else if (RispostaUtenteDisdire =="no")
@@ -94,7 +94,7 @@ Console.WriteLine("Vuoi DISDIRE i posti ? (Si/No)");
 
 
 
-mioEvento.ToString();
+//mioEvento.ToString();
 
 
 
