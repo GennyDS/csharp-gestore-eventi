@@ -81,7 +81,7 @@ Console.WriteLine("Vuoi DISDIRE i posti ? (Si/No)");
        
 
        Console.WriteLine("Numero di posti prenotati: " + mioEvento.GetNPostiPrenotati());
-        Console.WriteLine("Numero di posti Disponibili: " + mioEvento.GetPostiDisponibili(nPostiDisdetti));
+        Console.WriteLine("Numero di posti Disponibili: " + mioEvento.GetPostiDisponibili(nPostiDisdetti));  //non stampa 
 
     }
         else if (RispostaUtenteDisdire =="no")
