@@ -14,61 +14,116 @@ int nPostiMaxUtente = int.Parse(Console.ReadLine());
 
 
 Console.WriteLine("inserisci il numero dei posti che intendi prenotare  ");
- int nPostiPrenotatiUtente=int.Parse(Console.ReadLine());
-
-
-
-int nPostiDisponibiliUtente = nPostiMaxUtente - nPostiPrenotatiUtente;
-
-//-------------CONTROLLO POSTI---------
-if(nPostiDisponibiliUtente <0)
-{
-    throw new ArgumentOutOfRangeException("Numero negativo");
-}
-
-
-
+int nPostiPrenotatiUtente=int.Parse(Console.ReadLine());
 
 //-------CREZIONE OGGETTO------
-Evento mioEvento = new Evento(TitoloUtente, DataUtente, nPostiMaxUtente, nPostiPrenotatiUtente);
+Evento mioEvento = new Evento(TitoloUtente, DataUtente, nPostiMaxUtente);
+mioEvento.PrenotaPosti( nPostiPrenotatiUtente);
 
 
 Console.WriteLine("Numero di posti prenotati: "+nPostiPrenotatiUtente);
-Console.WriteLine("Numero di posti Disponibili: " +nPostiDisponibiliUtente);
+Console.WriteLine("Numero di posti Disponibili: "+mioEvento.GetPostiDisponibili(nPostiMaxUtente,nPostiPrenotatiUtente));
 
-//-----------------------------------------------
 
-//-------CONTROLLO RISPOSTA UTENTE---------
-bool flag = false;
+//-------PRENOTAZIONE-----------------
+bool flagPrenotazione = false;
 
-while (flag == false)
+while (flagPrenotazione == false)
 {
 
     Console.WriteLine("Vuoi Prenotare altri Posti ? (Si/No)");
-    string RispostaUtente = Console.ReadLine();
-    RispostaUtente = RispostaUtente.ToLower();
+    string RispostaUtentePrenotazione = Console.ReadLine();
+    RispostaUtentePrenotazione = RispostaUtentePrenotazione.ToLower();
 
-    if (RispostaUtente == "si")
+
+    if (RispostaUtentePrenotazione == "si")
     {
-        int nNuoviPostiPrenotati = mioEvento.PrenotaPosti(nPostiMaxUtente);
+        Console.WriteLine("quanti posti vuole prenotare?");
+        int numeroPostiDaPrenotare = int.Parse(Console.ReadLine());
+        int nNuoviPostiPrenotati = mioEvento.PrenotaPosti(numeroPostiDaPrenotare);
 
-        nNuoviPostiPrenotati += nPostiPrenotatiUtente;
-        int nNuoviPostiDisponibili = nPostiMaxUtente - nNuoviPostiPrenotati;
 
-        Console.WriteLine("Numero di posti prenotati: " + nNuoviPostiPrenotati);
-        Console.WriteLine("Numero di posti Disponibili: " + nNuoviPostiDisponibili);               //EROORE SULL'INSERIMENTO DEI NUMERI DOPO IL SECONDO SI (deve essere obbligatoriaamnete  più grande)
-
+        Console.WriteLine("Numero di posti prenotati: " + mioEvento.GetNPostiPrenotati());
+        Console.WriteLine("Numero di posti Disponibili: " + mioEvento.GetPostiDisponibili(nPostiMaxUtente, nNuoviPostiPrenotati));             
     }
-    else if (RispostaUtente == "no")
+    else if (RispostaUtentePrenotazione == "no")
     {
         Console.WriteLine("Ok VaBene!!");
-        flag=true;
+        flagPrenotazione=true;
 
     }
-    else
+    else if ((RispostaUtentePrenotazione !="si")   || (RispostaUtentePrenotazione != "no"))
     {
         throw new ArgumentOutOfRangeException("Hai inserito una risposta non contemplata,RIPROVA");
     }
+
 }
 
+
+
+
+//------DISDIRE-------
+bool flagDisdire = false;
+
+
+while(flagDisdire==false)
+{
+
+Console.WriteLine("Vuoi DISDIRE i posti ? (Si/No)");
+    string RispostaUtenteDisdire = Console.ReadLine();
+    RispostaUtenteDisdire=RispostaUtenteDisdire.ToLower();
+
+    if (RispostaUtenteDisdire == "si")
+    {
+        int nPostiDisdetti= mioEvento.DisdiciPosti(nPostiPrenotatiUtente);
+
+        nPostiDisdetti -= nPostiPrenotatiUtente;
+      
+        int nNuoviPostiDispdetti = nPostiDisdetti-nPostiPrenotatiUtente ;
+        int nNuoviPostiDisponibili = nPostiMaxUtente - nNuoviPostiDispdetti;
+
+        Console.WriteLine("Numero di posti prenotati: " + nNuoviPostiDispdetti);
+        Console.WriteLine("Numero di posti Disponibili: " + nNuoviPostiDisponibili);
+
+    }
+        else if (RispostaUtenteDisdire =="no")
+        {
+      flagDisdire = true;
+        }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Console.WriteLine("inserisci il nome del tuo programma eventi");
+ string NomeEventoUtente=Console.ReadLine();
+
+Console.WriteLine("indica il numero di eventi da inserire");
+int NumeroEventoUtente= int.Parse(Console.ReadLine());
 

@@ -13,12 +13,18 @@ namespace GestoreEventi
         private int CapienzaMaxEvento;
         private int nPostiPrenotati;
 
-        public Evento(string Titolo, DateTime Data, int CapienzaMaxEvento, int nPostiPrenotati)   //Costruttore
+        public Evento(string Titolo, DateTime Data, int CapienzaMaxEvento)   //Costruttore
         {
             this.Titolo = Titolo;
-            this.Data = Data = DateTime.Now; ;
-           ;
-            this.nPostiPrenotati = nPostiPrenotati=0;
+
+            if (Data < DateTime.Now)
+            {
+                throw new Exception("La data è  troppo vecchia");
+            }
+
+            this.Data = Data; 
+            this.nPostiPrenotati = 0;
+            this.CapienzaMaxEvento = CapienzaMaxEvento;
 
         }
 
@@ -98,40 +104,46 @@ namespace GestoreEventi
             return nPostiPrenotati;
         }
 
-
-
-
-        public int  PrenotaPosti(int nPostiMaxUtente)
+        public int GetPostiDisponibili(int numeroPostimax,int numeroPostiPrenotati)
         {
-            int NuoviPostiPrenotati;
+            int postiDisponibili = numeroPostimax - numeroPostiPrenotati;
+            return postiDisponibili;
+        }
+
+
+        public int  PrenotaPosti(int numeroPostiCheStoPrenotando)
+        {
+
             bool flag = false;
 
             do
             {
 
-                Console.WriteLine("Inserisci il numero di posti che vuoi prenotare");
-                NuoviPostiPrenotati = int.Parse(Console.ReadLine());
 
-                NuoviPostiPrenotati += nPostiPrenotati;
-
-                if (NuoviPostiPrenotati >nPostiMaxUtente)
+                if (this.nPostiPrenotati<this.CapienzaMaxEvento)
                 {
-                    throw new Exception("Posti non disponibili,riprova");
+                this.nPostiPrenotati = this.nPostiPrenotati + numeroPostiCheStoPrenotando;
+                    return this.nPostiPrenotati;
+                    flag = true;
+                    
                 }
+                  
                 else
                 {
-                    flag = true;
+                    throw new Exception("non ci sono abbastanza posti liberi");
                 }
-            } while (flag == false);
+               
 
-                return NuoviPostiPrenotati;
+            } while (flag == false);
+          
+
         }
 
 
 
-        public int DisdiciPosti( int nPostiRimossi)
+        public int DisdiciPosti( int nPostiPrenotati)
         {
-
+            int nPostiRimossi=0;
             bool flag = false;
 
             while (flag == false)
