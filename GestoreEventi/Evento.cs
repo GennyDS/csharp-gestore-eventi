@@ -148,15 +148,15 @@ namespace GestoreEventi
            do
            {
 
-                if(nPostiCheDevoDisdire<this.CapienzaMaxEvento)
+                if(nPostiCheDevoDisdire<this.CapienzaMaxEvento) // errore va in negativo 
                 {
-                    this.nPostiPrenotati-=nPostiCheDevoDisdire;
+                    this.nPostiPrenotati-=nPostiCheDevoDisdire;                                             
                     flag = true;
                     return this.nPostiPrenotati;
                 }
                 else
                 {
-                    throw new Exception("");
+                    throw new Exception("HAI DISDETTO più posti DI QUELLI DISPONIBILI");
                     
                 }
            } while (flag == false) ;
