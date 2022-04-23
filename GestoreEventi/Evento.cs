@@ -145,20 +145,23 @@ namespace GestoreEventi
         {
             bool flag = false;
 
-            while (flag == false)
-            {
+           do
+           {
 
                 if(nPostiCheDevoDisdire<this.CapienzaMaxEvento)
                 {
                     this.nPostiPrenotati-=nPostiCheDevoDisdire;
+                    flag = true;
+                    return this.nPostiPrenotati;
                 }
                 else
                 {
                     throw new Exception("");
-                    flag = true;
+                    
                 }
-            }
-            return this.nPostiPrenotati;
+           } while (flag == false) ;
+
+
         }
 
         public virtual string ToString()
